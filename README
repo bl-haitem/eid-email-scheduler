@@ -1,0 +1,70 @@
+# Email Scheduler API
+
+This is a simple Node.js API for scheduling emails using Nodemailer, Firebase Firestore, and Node Schedule.
+
+## Features
+- Schedule emails for future delivery.
+- Store scheduled emails in Firestore.
+- Automatically send emails at the scheduled time.
+
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/bl-haitem/eid-email-scheduler.git
+   cd eid-email-scheduler
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Add a `.env` file with the following variables:
+   ```env
+   MAILTRAP_USER=your_mailtrap_username
+   MAILTRAP_PASS=your_mailtrap_password
+   ```
+4. Add your Firebase Admin SDK JSON file as `firebase-admin.json`.
+
+## Usage
+Run the server:
+```sh
+node server.js
+```
+
+## API Endpoint
+### Schedule an email
+**POST** `/schedule-email`
+
+**Request Body:**
+```json
+{
+  "recipient": "haitembelaib@gmail.com",
+  "subject": "Test Email",
+  "message": "This is a scheduled email.",
+  "sendTime": "2025-03-28T17:03:00.000Z"
+}
+```
+
+## Important Notes
+- In Mailtrap's free plan, you can only send emails to your own account's registered email address.
+- The only allowed recipient for testing is **haitembelaib@gmail.com**.
+
+## Handling Push Issues with GitHub
+If you encounter a push error due to `firebase-admin.json` being included in the commit, follow these steps:
+1. Remove the incorrect `.gitignorem` file if present:
+   ```sh
+   rm .gitignorem
+   ```
+2. Create a correct `.gitignore` file and add `firebase-admin.json`:
+   ```sh
+   echo "firebase-admin.json" >> .gitignore
+   ```
+3. Add the changes and commit:
+   ```sh
+   git add .gitignore
+   git commit -m "Added firebase-admin.json to .gitignore"
+   ```
+4. Force push the changes:
+   ```sh
+   git push origin main --force
+   ```
+
